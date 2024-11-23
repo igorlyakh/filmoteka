@@ -9,7 +9,7 @@ interface userData {
   email: string | null;
 }
 
-const useStore = create(set => ({
+const useUserStore = create(set => ({
   token: localStorage.getItem('token'),
   loading: false,
   error: null,
@@ -28,4 +28,4 @@ const useStore = create(set => ({
   },
 }));
 
-export default useStore;
+export default useUserStore;
