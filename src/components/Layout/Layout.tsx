@@ -1,3 +1,4 @@
+import Container from '../Container';
 import styled from './Layout.module.scss';
 
 import { Link, Outlet } from 'react-router-dom';
@@ -23,7 +24,11 @@ const Layout = () => {
         </menu>
       </header>
       <main>
-        <Outlet />
+        <section>
+          <Container>
+            <Outlet />
+          </Container>
+        </section>
       </main>
     </>
   );
