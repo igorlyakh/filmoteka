@@ -1,4 +1,4 @@
-import Container from '@/Components/Container';
+import Container from '@/components/Container';
 import styled from './Layout.module.scss';
 
 import { Link, Outlet } from 'react-router-dom';
