@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
 
 const App = () => {
   return (
@@ -14,7 +15,7 @@ const App = () => {
         />
         <Route
           path="login"
-          element={<div>Login Page</div>}
+          element={<LoginPage />}
         />
         <Route
           path="registration"
