@@ -2,9 +2,9 @@ import { useForm } from 'react-hook-form';
 import useAuthStore from '../../store/store';
 import style from './AuthForm.module.scss';
 
-const AuthForm = () => {
+const AuthForm = ({ typeRegistration = false }) => {
   const { register, handleSubmit, reset } = useForm();
-  const { login, token } = useAuthStore();
+  const { login } = useAuthStore();
   return (
     <form
       className={style.form}
@@ -13,13 +13,15 @@ const AuthForm = () => {
         reset();
       })}
     >
-      <input
-        className={style.input}
-        placeholder="Введите Ваше имя"
-        type="text"
-        required
-        {...register('name')}
-      />
+      {typeRegistration && (
+        <input
+          className={style.input}
+          placeholder="Введите Ваше имя"
+          type="text"
+          required
+          {...register('name')}
+        />
+      )}
       <input
         className={style.input}
         placeholder="Введите Ваш email"
