@@ -25,6 +25,21 @@ const useAuthStore = create(
         set({ isLoading: false });
       }
     },
+    registration: async data => {
+      set({ isLoading: true, error: null });
+      try {
+        const res = await axiosInstance('/auth/registration', data);
+        const { accessToken, name, email } = res.data;
+        localStorage.setItem('token', JSON.stringify(accessToken));
+        localStorage.setItem('name', JSON.stringify(name));
+        localStorage.setItem('email', JSON.stringify(email));
+        set({ token: accessToken, name, email });
+      } catch (error) {
+        set({ error: error.response?.data?.message });
+      } finally {
+        set({ isLoading: false });
+      }
+    },
   }))
 );
 

@@ -1,15 +1,13 @@
 import { useForm } from 'react-hook-form';
-import useAuthStore from '../../store/store';
 import style from './AuthForm.module.scss';
 
-const AuthForm = ({ typeRegistration = false }) => {
+const AuthForm = ({ typeRegistration = false, handler }) => {
   const { register, handleSubmit, reset } = useForm();
-  const { login } = useAuthStore();
   return (
     <form
       className={style.form}
       onSubmit={handleSubmit(data => {
-        login(data);
+        handler(data);
         reset();
       })}
     >
