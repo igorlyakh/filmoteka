@@ -1,7 +1,14 @@
 import AuthForm from '@/components/AuthForm/AuthForm';
+import useAuthStore from '@/store/store';
 
 const RegistrationPage = () => {
-  return <AuthForm typeRegistration={true} />;
+  const { registration } = useAuthStore();
+  return (
+    <AuthForm
+      typeRegistration={true}
+      handler={registration}
+    />
+  );
 };
 
 export default RegistrationPage;

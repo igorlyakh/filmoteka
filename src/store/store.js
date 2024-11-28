@@ -1,6 +1,6 @@
+import axiosInstance from '@/api/axios';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import axiosInstance from '../api/axios';
 
 const useAuthStore = create(
   devtools(set => ({
@@ -28,7 +28,7 @@ const useAuthStore = create(
     registration: async data => {
       set({ isLoading: true, error: null });
       try {
-        const res = await axiosInstance('/auth/registration', data);
+        const res = await axiosInstance.post('/auth/registration', data);
         const { accessToken, name, email } = res.data;
         localStorage.setItem('token', JSON.stringify(accessToken));
         localStorage.setItem('name', JSON.stringify(name));
