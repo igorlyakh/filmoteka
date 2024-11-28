@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import axiosInstance from '../api/axios';
 
 const useAuthStore = create(
   devtools(set => ({
@@ -12,10 +12,7 @@ const useAuthStore = create(
     login: async data => {
       set({ isLoading: true, error: null });
       try {
-        const res = await axios.post(
-          'https://filmoteka-server.onrender.com/api/auth/login',
-          data
-        );
+        const res = await axiosInstance.post('/auth/login', data);
         const { accessToken, name, email } = await res.data;
         localStorage.setItem('token', JSON.stringify(accessToken));
         localStorage.setItem('name', JSON.stringify(name));
