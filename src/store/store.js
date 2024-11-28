@@ -19,8 +19,10 @@ const useAuthStore = create(
         localStorage.setItem('email', JSON.stringify(email));
         set({ token: accessToken, name, email });
       } catch (error) {
-        console.log(error.response?.data?.message || 'Нет такого');
+        console.log(error.response?.data?.message);
         set({ error: error.response?.data?.message });
+      } finally {
+        set({ isLoading: false });
       }
     },
   }))
