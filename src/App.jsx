@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
         />
         <Route
           path="registration"
-          element={<div>Registration Page</div>}
+          element={<RegistrationPage />}
         />
       </Route>
     </Routes>
