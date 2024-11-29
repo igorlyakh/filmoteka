@@ -42,6 +42,18 @@ const useAuthStore = create(
         set({ isLoading: false });
       }
     },
+    logout: async () => {
+      set({ isLoading: true, error: null });
+      try {
+        await axiosInstance.post('/auth/logout');
+        setData(null, null, null);
+        set({ token: null, name: null, email: null });
+      } catch (error) {
+        set({ error: error.response?.data?.message });
+      } finally {
+        set({ isLoading: false });
+      }
+    },
   }))
 );
 

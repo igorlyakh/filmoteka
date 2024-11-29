@@ -5,7 +5,7 @@ import useAuthStore from '@/store/store';
 import { Link, Outlet } from 'react-router-dom';
 
 const Layout = () => {
-  const { token } = useAuthStore();
+  const { token, logout, name } = useAuthStore();
 
   return (
     <>
@@ -13,7 +13,15 @@ const Layout = () => {
         <Link to="/">LOGO</Link>
         <menu className={styled.menu}>
           {token ? (
-            <button>Выйти</button>
+            <div className={styled.wrapper}>
+              <p>Привет, {name}!</p>
+              <button
+                className={styled.button}
+                onClick={logout}
+              >
+                Выйти
+              </button>
+            </div>
           ) : (
             <>
               <Link
