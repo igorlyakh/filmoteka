@@ -23,8 +23,6 @@ axiosInstance.interceptors.response.use(
   async error => {
     const originalRequest = error.config;
 
-    console.log(error);
-
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
@@ -37,7 +35,7 @@ axiosInstance.interceptors.response.use(
         localStorage.setItem('token', accessToken);
         useAuthStore.setState({ token: accessToken });
         config.headers.Authorization = `Bearer ${accessToken}`;
-        return accessToken(originalRequest);
+        return axiosInstance(originalRequest);
       } catch (error) {
         console.error(error.response?.data?.message);
         return error.response?.data?.message;
