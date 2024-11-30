@@ -1,7 +1,8 @@
 import Layout from '@/components/Layout';
+import RegistrationPage from '@/pages/RegistrationPage';
+import RestrictedRoutes from '@/routes/RestrictedRoutes';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
-import RegistrationPage from './pages/RegistrationPage';
 
 const App = () => {
   return (
@@ -16,11 +17,11 @@ const App = () => {
         />
         <Route
           path="login"
-          element={<LoginPage />}
+          element={<RestrictedRoutes component={LoginPage} />}
         />
         <Route
           path="registration"
-          element={<RegistrationPage />}
+          element={<RestrictedRoutes component={RegistrationPage} />}
         />
       </Route>
     </Routes>
