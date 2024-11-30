@@ -20,4 +20,10 @@ h6 {
 a {
   text-decoration: none;
   color: inherit;
+  &.active {
+    color: variables.$main-text;
+    background-color: variables.$hover-gray;
+    border: none;
+    border-radius: 5px;
+  }
 }
