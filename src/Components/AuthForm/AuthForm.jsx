@@ -34,7 +34,12 @@ const AuthForm = ({ typeRegistration = false, handler }) => {
         required
         {...register('password')}
       />
-      <button type="submit">Send</button>
+      <button
+        className={style.button}
+        type="submit"
+      >
+        Send
+      </button>
     </form>
   );
 };
