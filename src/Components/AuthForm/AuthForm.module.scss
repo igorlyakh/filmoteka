@@ -1,31 +1,40 @@
 .form {
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 40px;
   display: flex;
-  width: 320px;
+  width: 280px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #ccc0c0;
+  border: 1px solid #493f3f;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: var.$hover-gray 0 0 30px 15px;
   > button {
-    height: 30px;
-    width: 200px;
+    height: 40px;
+    background-color: #282828;
+    border: 1px solid var.$light-grey;
+    color: var.$white;
+    padding: 8px;
+    width: 250px;
     cursor: pointer;
   }
 }
 
 .input {
   height: 30px;
-  width: 200px;
-  padding: 5px;
+  width: 250px;
+  padding: 8px;
   border-radius: 5px;
   outline: none;
-  border: 1px solid var.$dark-gray;
+  color: var.$white;
+  background-color: transparent;
+  border: 1px solid var.$light-grey;
   &::placeholder {
     color: var.$hover-gray;
   }
+}
+
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px) {
 }
