@@ -38,7 +38,7 @@ const AuthForm = ({ typeRegistration = false, handler }) => {
         className={style.button}
         type="submit"
       >
-        Send
+        {typeRegistration ? 'Зарегистрироваться' : 'Войти'}
       </button>
     </form>
   );
