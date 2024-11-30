@@ -2,7 +2,7 @@ import Container from '@/components/Container';
 import styled from './Layout.module.scss';
 
 import useAuthStore from '@/store/store';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 
 const Layout = () => {
   const { token, logout, name } = useAuthStore();
@@ -24,18 +24,18 @@ const Layout = () => {
             </div>
           ) : (
             <>
-              <Link
+              <NavLink
                 className={styled.link}
                 to="login"
               >
                 Войти
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 className={styled.link}
                 to="registration"
               >
                 Регистрация
-              </Link>
+              </NavLink>
             </>
           )}
         </menu>
