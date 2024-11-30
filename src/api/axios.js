@@ -1,8 +1,12 @@
 import useAuthStore from '@/store/store';
 import axios from 'axios';
 
+const baseURL = 'http://localhost:3001/api';
+//! Prod server
+//! const baseURL = ''https://filmoteka-server.onrender.com/api''
+
 const axiosInstance = axios.create({
-  baseURL: 'https://filmoteka-server.onrender.com/api',
+  baseURL,
 });
 
 axiosInstance.interceptors.request.use(config => {
