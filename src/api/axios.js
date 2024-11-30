@@ -7,6 +7,7 @@ const baseURL = 'http://localhost:3001/api';
 
 const axiosInstance = axios.create({
   baseURL,
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(config => {
@@ -16,5 +17,33 @@ axiosInstance.interceptors.request.use(config => {
   }
   return config;
 });
+
+axiosInstance.interceptors.response.use(
+  response => response,
+  async error => {
+    const originalRequest = error.config;
+
+    console.log(error);
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        const res = await axiosInstance.post(
+          '/auth/refresh',
+          {},
+          { withCredentials: true }
+        );
+        const { accessToken } = res.data;
+        localStorage.setItem('token', accessToken);
+        useAuthStore.setState({ token: accessToken });
+        config.headers.Authorization = `Bearer ${accessToken}`;
+        return accessToken(originalRequest);
+      } catch (error) {
+        console.error(error.response?.data?.message);
+        return error.response?.data?.message;
+      }
+    }
+  }
+);
 
 export default axiosInstance;
