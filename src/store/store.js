@@ -22,6 +22,7 @@ const useAuthStore = create(
         const res = await axiosInstance.post('/auth/login', data);
         const { accessToken, name, email } = res.data;
         setData(accessToken, name, email);
+        toast.success(`Добро пожаловать, ${name}!`);
         set({ token: accessToken, name, email });
       } catch (error) {
         set({ error: error.response?.data?.message });
@@ -36,9 +37,11 @@ const useAuthStore = create(
         const res = await axiosInstance.post('/auth/registration', data);
         const { accessToken, name, email } = res.data;
         setData(accessToken, name, email);
+        toast.success(`Добро пожаловать, ${name}!`);
         set({ token: accessToken, name, email });
       } catch (error) {
         set({ error: error.response?.data?.message });
+        toast.error(error.response?.data?.message);
       } finally {
         set({ isLoading: false });
       }
