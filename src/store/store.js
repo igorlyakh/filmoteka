@@ -1,4 +1,5 @@
 import axiosInstance from '@/api/axios';
+import toast from 'react-hot-toast';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
@@ -19,12 +20,12 @@ const useAuthStore = create(
       set({ isLoading: true, error: null });
       try {
         const res = await axiosInstance.post('/auth/login', data);
-        const { accessToken, name, email } = await res.data;
+        const { accessToken, name, email } = res.data;
         setData(accessToken, name, email);
         set({ token: accessToken, name, email });
       } catch (error) {
-        console.log(error.response?.data?.message);
         set({ error: error.response?.data?.message });
+        toast.error(error.response?.data?.message);
       } finally {
         set({ isLoading: false });
       }

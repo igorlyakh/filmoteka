@@ -23,7 +23,12 @@ axiosInstance.interceptors.response.use(
   async error => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && error.config && !originalRequest._isRetry) {
+    if (
+      error.response?.status === 401 &&
+      error.config &&
+      !originalRequest._isRetry &&
+      error.response?.data?.message !== 'Неверный логин или пароль!'
+    ) {
       originalRequest._isRetry = true;
       try {
         const res = await axios.post(
@@ -38,10 +43,10 @@ axiosInstance.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         return axiosInstance.request(originalRequest);
       } catch (error) {
-        console.error(error.response?.data?.message);
-        return error.response?.data?.message;
+        return Promise.reject(error);
       }
     }
+    return Promise.reject(error);
   }
 );
 
