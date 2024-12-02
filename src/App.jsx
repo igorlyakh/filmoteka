@@ -38,11 +38,21 @@ const App = () => {
         />
         <Route
           path="login"
-          element={<RestrictedRoutes component={LoginPage} />}
+          element={
+            <RestrictedRoutes
+              component={LoginPage}
+              redirectTo="/rooms"
+            />
+          }
         />
         <Route
           path="registration"
-          element={<RestrictedRoutes component={RegistrationPage} />}
+          element={
+            <RestrictedRoutes
+              component={RegistrationPage}
+              redirectTo="/rooms"
+            />
+          }
         />
         <Route
           path="rooms"
