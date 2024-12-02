@@ -5,6 +5,8 @@ import useAuthStore from '@/store/store';
 import { Route, Routes } from 'react-router-dom';
 import { PuffLoader } from 'react-spinners';
 import LoginPage from './pages/LoginPage';
+import RoomsPage from './pages/RoomsPage';
+import PrivateRoute from './routes/PrivateRoute';
 
 const App = () => {
   const { isLoading } = useAuthStore();
@@ -41,6 +43,15 @@ const App = () => {
         <Route
           path="registration"
           element={<RestrictedRoutes component={RegistrationPage} />}
+        />
+        <Route
+          path="rooms"
+          element={
+            <PrivateRoute
+              component={RoomsPage}
+              redirectTo="/login"
+            />
+          }
         />
       </Route>
     </Routes>
