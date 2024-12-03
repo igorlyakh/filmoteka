@@ -3,12 +3,7 @@ import toast from 'react-hot-toast';
 import style from './AuthForm.module.scss';
 
 const AuthForm = ({ typeRegistration = false, handler }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onError = errors => {
     Object.values(errors).forEach(errors => {
