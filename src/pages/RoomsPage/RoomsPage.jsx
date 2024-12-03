@@ -1,5 +1,7 @@
+import RoomsList from '@/components/RoomsList';
+
 const RoomsPage = () => {
-  return <div>RoomsPage</div>;
+  return <RoomsList />;
 };
 
 export default RoomsPage;
