@@ -12,6 +12,7 @@
 .menu {
   width: 210px;
   display: flex;
+  align-items: center;
   gap: 15px;
   justify-content: end;
   height: 30px;
@@ -26,18 +27,6 @@
   border-bottom: 1px solid white;
   padding: 5px;
   font-size: 14px;
-}
-
-.wrapper {
-  display: flex;
-  cursor: default;
-  user-select: none;
-  align-items: center;
-  gap: 15px;
-  > p {
-    color: var.$white;
-    font-size: 14px;
-  }
 }
 
 .button {
