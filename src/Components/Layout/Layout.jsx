@@ -11,7 +11,7 @@ const Layout = () => {
     <>
       <header className={styled.header}>
         <Link to="/">LOGO</Link>
-        <menu className={styled.menu}>
+        <nav className={styled.menu}>
           {token ? (
             <button
               className={styled.button}
@@ -35,7 +35,7 @@ const Layout = () => {
               </NavLink>
             </>
           )}
-        </menu>
+        </nav>
       </header>
       <main>
         <section>
