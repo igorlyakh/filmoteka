@@ -48,6 +48,18 @@
   }
 }
 
+.navLink {
+  display: flex;
+  width: 100px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  color: var.$white;
+  border-bottom: 1px solid white;
+  padding: 5px;
+  font-size: 14px;
+}
+
 @media (min-width: 768px) {
   .menu {
     width: 300px;
@@ -80,6 +92,18 @@
     font-size: 16px;
     transition: background-color 250ms ease, border-radius 250ms ease, color 250ms ease,
       border-bottom 250ms ease;
+    &:hover {
+      background-color: var.$white;
+      border-radius: 15px;
+      color: var.$dark-gray;
+      border-bottom: none;
+    }
+  }
+
+  .navLink {
+    transition: background-color 250ms ease, border-radius 250ms ease, color 250ms ease,
+      border-bottom 250ms ease;
+    width: 150px;
     &:hover {
       background-color: var.$white;
       border-radius: 15px;

@@ -13,12 +13,20 @@ const Layout = () => {
         <Link to="/">LOGO</Link>
         <nav className={styled.menu}>
           {token ? (
-            <button
-              className={styled.button}
-              onClick={logout}
-            >
-              Выйти
-            </button>
+            <>
+              <NavLink
+                to="rooms"
+                className={styled.navLink}
+              >
+                Комнаты
+              </NavLink>
+              <button
+                className={styled.button}
+                onClick={logout}
+              >
+                Выйти
+              </button>
+            </>
           ) : (
             <>
               <NavLink
