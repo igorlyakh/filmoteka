@@ -1,0 +1,12 @@
+.item {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 10px;
+}
+
+@media (min-width: 768px) {
+  .item {
+    width: 200px;
+  }
+}

@@ -1,8 +1,8 @@
 import useAuthStore from '@/store/store';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import getRooms from '../../api/getRooms';
+import RoomItem from '../RoomItem';
 import style from './RoomsList.module.scss';
 
 const RoomsList = () => {
@@ -18,7 +18,6 @@ const RoomsList = () => {
     });
 
     socket.on('addToRoom', data => {
-      console.log(data);
       setRooms(prevRooms => {
         if (Array.isArray(prevRooms)) {
           return [...prevRooms, data];
@@ -43,14 +42,14 @@ const RoomsList = () => {
     <>
       {rooms.length > 0 ? (
         <ul className={style.wrapper}>
-          <li>
-            <p>Название комнаты: Комната 1</p>
-            <Link>To room</Link>
-          </li>
-          <li>
-            <p>Название комнаты: Комната 2</p>
-            <Link>To room</Link>
-          </li>
+          {rooms.map(room => {
+            return (
+              <RoomItem
+                key={room.id}
+                name={room.name}
+              />
+            );
+          })}
         </ul>
       ) : (
         <p>No rooms.</p>
