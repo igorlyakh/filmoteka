@@ -2,6 +2,7 @@ import useAuthStore from '@/store/store';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import getRooms from '../../api/getRooms';
+import NoRoomsHeader from '../NoRoomsHeader';
 import RoomItem from '../RoomItem';
 import style from './RoomsList.module.scss';
 
@@ -60,7 +61,7 @@ const RoomsList = () => {
           })}
         </ul>
       ) : (
-        <p>No rooms.</p>
+        <NoRoomsHeader />
       )}
     </>
   );
