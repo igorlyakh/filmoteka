@@ -27,17 +27,25 @@ const RoomsList = () => {
       });
     });
 
+    socket.on('kickFromRoom', data => {
+      setRooms(prevRooms => {
+        return prevRooms.filter(room => rooms.id !== data.id);
+      });
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [token]);
+
+  useEffect(() => {
     const getData = async () => {
       const data = await getRooms();
       setRooms(data);
     };
 
     getData();
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [token]);
+  }, []);
   return (
     <>
       {rooms.length > 0 ? (
