@@ -11,9 +11,9 @@ const setData = (token, name, email) => {
 
 const useAuthStore = create(
   devtools(set => ({
-    token: JSON.parse(localStorage.getItem('token')) || null,
-    name: JSON.parse(localStorage.getItem('name')) || null,
-    email: JSON.parse(localStorage.getItem('email')) || null,
+    token: localStorage.getItem('token') || null,
+    name: localStorage.getItem('name') || null,
+    email: localStorage.getItem('email') || null,
     isLoading: false,
     error: null,
     login: async data => {
