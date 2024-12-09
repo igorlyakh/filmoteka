@@ -34,7 +34,6 @@ const AddRoom = ({ isOpen, toggleModal, setRooms }) => {
         return [data];
       }
     });
-    console.log(res);
     reset();
     toggleModal();
   };
@@ -63,7 +62,7 @@ const AddRoom = ({ isOpen, toggleModal, setRooms }) => {
             },
           })}
         />
-        <button type="submit">Create room</button>
+        <button type="submit">Создать комнату</button>
       </form>
     </Modal>
   );

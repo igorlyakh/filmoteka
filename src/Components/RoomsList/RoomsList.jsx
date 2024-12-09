@@ -57,6 +57,11 @@ const RoomsList = () => {
   }, []);
   return (
     <>
+      <AddRoom
+        isOpen={isOpen}
+        toggleModal={toggleModal}
+        setRooms={setRooms}
+      />
       {rooms.length > 0 ? (
         <ul className={style.wrapper}>
           {rooms.map(room => {
@@ -72,14 +77,9 @@ const RoomsList = () => {
       ) : (
         <>
           <NoRoomsHeader />
-          <button onClick={toggleModal}>Create Room</button>
         </>
       )}
-      <AddRoom
-        isOpen={isOpen}
-        toggleModal={toggleModal}
-        setRooms={setRooms}
-      />
+      <button onClick={toggleModal}>Создать комнату</button>
     </>
   );
 };
