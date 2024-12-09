@@ -4,7 +4,7 @@ import { TiDelete } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
 import style from './RoomItem.module.scss';
 
-const RoomItem = ({ name, roomId }) => {
+const RoomItem = ({ name, roomId, onDeleteRoom }) => {
   const removeRoom = async roomId => {
     console.log(roomId);
     await deleteRoom(roomId);
@@ -13,7 +13,10 @@ const RoomItem = ({ name, roomId }) => {
   return (
     <li className={style.item}>
       <button
-        onClick={() => removeRoom(Number(roomId))}
+        onClick={() => {
+          removeRoom(Number(roomId));
+          onDeleteRoom(roomId);
+        }}
         className={style.deleteButton}
       >
         <TiDelete />

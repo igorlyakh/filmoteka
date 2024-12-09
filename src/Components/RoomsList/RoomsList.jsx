@@ -14,6 +14,12 @@ const RoomsList = () => {
 
   const { token } = useAuthStore();
 
+  const onDeleteRoom = roomId => {
+    setRooms(prevRooms => {
+      return prevRooms.filter(room => room.id !== roomId);
+    });
+  };
+
   const toggleModal = () => {
     setIsOpen(prev => !prev);
   };
@@ -70,6 +76,7 @@ const RoomsList = () => {
                 key={room.id}
                 name={room.name}
                 roomId={room.id}
+                onDeleteRoom={onDeleteRoom}
               />
             );
           })}
