@@ -9,12 +9,25 @@
     margin: 0;
     margin-bottom: 15px;
   }
+  position: relative;
 }
 
 .link {
   display: flex;
   align-items: center;
   gap: 3px;
+}
+
+.deleteButton {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var.$white;
+  font-size: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
