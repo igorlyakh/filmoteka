@@ -1,12 +1,21 @@
+import deleteRoom from '@/api/deleteRoom';
 import { IoIosArrowForward } from 'react-icons/io';
 import { TiDelete } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
 import style from './RoomItem.module.scss';
 
 const RoomItem = ({ name, roomId }) => {
+  const removeRoom = async roomId => {
+    console.log(roomId);
+    await deleteRoom(roomId);
+  };
+
   return (
     <li className={style.item}>
-      <button className={style.deleteButton}>
+      <button
+        onClick={() => removeRoom(Number(roomId))}
+        className={style.deleteButton}
+      >
         <TiDelete />
       </button>
       <p>{name}</p>
