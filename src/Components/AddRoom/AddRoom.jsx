@@ -1,5 +1,6 @@
 import createRoom from '@/api/createRoom';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -55,7 +56,11 @@ const AddRoom = ({ isOpen, toggleModal, setRooms }) => {
           placeholder="Enter room name"
           required
           {...register('name', {
-            required: 'Room name is required!',
+            required: 'Укажите название комнаты!',
+            maxLength: {
+              value: 20,
+              message: 'Слишком длинное название!',
+            },
           })}
         />
         <button type="submit">Create room</button>
