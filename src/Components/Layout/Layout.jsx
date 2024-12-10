@@ -1,50 +1,11 @@
 import Container from '@/components/Container';
-import styled from './Layout.module.scss';
-
-import useAuthStore from '@/store/store';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import Header from '../Header';
 
 const Layout = () => {
-  const { token, logout } = useAuthStore();
-
   return (
     <>
-      <header className={styled.header}>
-        <Link to="/">LOGO</Link>
-        <nav className={styled.menu}>
-          {token ? (
-            <>
-              <NavLink
-                to="rooms"
-                className={styled.navLink}
-              >
-                Комнаты
-              </NavLink>
-              <button
-                className={styled.button}
-                onClick={logout}
-              >
-                Выйти
-              </button>
-            </>
-          ) : (
-            <>
-              <NavLink
-                className={styled.link}
-                to="login"
-              >
-                Войти
-              </NavLink>
-              <NavLink
-                className={styled.link}
-                to="registration"
-              >
-                Регистрация
-              </NavLink>
-            </>
-          )}
-        </nav>
-      </header>
+      <Header />
       <main>
         <section>
           <Container>
