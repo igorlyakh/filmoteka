@@ -6,7 +6,6 @@ import style from './RoomItem.module.scss';
 
 const RoomItem = ({ name, roomId, onDeleteRoom }) => {
   const removeRoom = async roomId => {
-    console.log(roomId);
     await deleteRoom(roomId);
   };
 
