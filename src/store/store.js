@@ -25,8 +25,10 @@ const useAuthStore = create(
         toast.success(`Добро пожаловать, ${name}!`);
         set({ token: accessToken, name, email });
       } catch (error) {
-        set({ error: error.response?.data?.message });
-        toast.error(error.response?.data?.message);
+        set({
+          error: error.response?.data?.message || 'Ошибка сервера! Попробуйте позже.',
+        });
+        toast.error(error.response?.data?.message || 'Ошибка сервера! Попробуйте позже.');
       } finally {
         set({ isLoading: false });
       }
@@ -40,8 +42,10 @@ const useAuthStore = create(
         toast.success(`Добро пожаловать, ${name}!`);
         set({ token: accessToken, name, email });
       } catch (error) {
-        set({ error: error.response?.data?.message });
-        toast.error(error.response?.data?.message);
+        set({
+          error: error.response?.data?.message || 'Ошибка сервера! Попробуйте позже.',
+        });
+        toast.error(error.response?.data?.message || 'Ошибка сервера! Попробуйте позже.');
       } finally {
         set({ isLoading: false });
       }
@@ -53,7 +57,10 @@ const useAuthStore = create(
         setData(null, null, null);
         set({ token: null, name: null, email: null });
       } catch (error) {
-        set({ error: error.response?.data?.message });
+        set({
+          error: error.response?.data?.message || 'Ошибка сервера! Попробуйте позже.',
+        });
+        toast.error(error.response?.data?.message || 'Ошибка сервера! Попробуйте позже.');
       } finally {
         set({ isLoading: false });
       }
