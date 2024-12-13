@@ -2,6 +2,7 @@ import createRoom from '@/api/createRoom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import Modal from 'react-modal';
+import style from './AddRoom.module.scss';
 
 const customStyles = {
   content: {
@@ -13,6 +14,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     backgroundColor: '#242020',
     border: '1px solid #7c7c7c',
+    padding: '30px',
   },
   overlay: {
     backgroundColor: '#383838ae',
@@ -49,13 +51,16 @@ const AddRoom = ({ isOpen, toggleModal, setRooms }) => {
       isOpen={isOpen}
       onRequestClose={toggleModal}
     >
+      <h2 className={style.header}>Добавить комнату</h2>
       <form
+        className={style.form}
         onSubmit={handleSubmit(data => {
           handler(data);
           reset();
         }, onError)}
       >
         <input
+          className={style.input}
           type="text"
           placeholder="Enter room name"
           required
@@ -67,7 +72,12 @@ const AddRoom = ({ isOpen, toggleModal, setRooms }) => {
             },
           })}
         />
-        <button type="submit">Создать комнату</button>
+        <button
+          className={style.button}
+          type="submit"
+        >
+          Создать комнату
+        </button>
       </form>
     </Modal>
   );
