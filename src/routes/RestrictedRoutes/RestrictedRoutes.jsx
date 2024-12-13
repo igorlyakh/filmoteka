@@ -1,4 +1,4 @@
-import useAuthStore from '@/store/store';
+import useAuthStore from '@/store';
 import { Navigate } from 'react-router-dom';
 
 const RestrictedRoutes = ({ component: Component, redirectTo = '/' }) => {

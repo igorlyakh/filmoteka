@@ -1,5 +1,5 @@
-import AuthForm from '@/components/AuthForm/AuthForm';
-import useAuthStore from '@/store/store';
+import AuthForm from '@/components/AuthForm';
+import useAuthStore from '@/store';
 
 const RegistrationPage = () => {
   const { registration } = useAuthStore();

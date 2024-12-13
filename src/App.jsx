@@ -1,13 +1,13 @@
 import Layout from '@/components/Layout';
+import LoginPage from '@/pages/LoginPage';
 import RegistrationPage from '@/pages/RegistrationPage';
+import RoomPage from '@/pages/RoomPage';
+import RoomsPage from '@/pages/RoomsPage';
+import PrivateRoute from '@/routes/PrivateRoute';
 import RestrictedRoutes from '@/routes/RestrictedRoutes';
-import useAuthStore from '@/store/store';
+import useAuthStore from '@/store';
 import { Route, Routes } from 'react-router-dom';
 import { PuffLoader } from 'react-spinners';
-import LoginPage from './pages/LoginPage';
-import RoomPage from './pages/RoomPage';
-import RoomsPage from './pages/RoomsPage';
-import PrivateRoute from './routes/PrivateRoute';
 
 const App = () => {
   const { isLoading } = useAuthStore();

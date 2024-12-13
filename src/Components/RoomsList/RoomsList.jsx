@@ -1,8 +1,8 @@
+import getRooms from '@/api/getRooms';
 import useAuthStore from '@/store/store';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
-import getRooms from '../../api/getRooms';
-import AddRoom from '../AddRoom/AddRoom';
+import AddRoom from '../AddRoom';
 import NoRoomsHeader from '../NoRoomsHeader';
 import RoomItem from '../RoomItem';
 import style from './RoomsList.module.scss';
