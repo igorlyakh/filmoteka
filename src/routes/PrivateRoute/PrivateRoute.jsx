@@ -1,10 +1,12 @@
-import useAuthStore from '@/store/store';
+import useAuthStore from '@/store';
 import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-  const { token } = useAuthStore();
+  const { isLogin } = useAuthStore();
 
-  const shouldRedirect = !token;
+  const shouldRedirect = !isLogin;
+
+  console.log({ isLogin });
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : <Component />;
 };

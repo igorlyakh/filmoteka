@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import styled from './Menu.module.scss';
 
 const Menu = () => {
-  const { token, logout } = useAuthStor();
+  const { isLogin, logout } = useAuthStor();
   return (
     <nav className={styled.menu}>
-      {token ? (
+      {isLogin ? (
         <>
           <NavLink
             to="rooms"
