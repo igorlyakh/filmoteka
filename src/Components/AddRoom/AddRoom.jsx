@@ -1,6 +1,7 @@
 import createRoom from '@/api/createRoom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { MdClose } from 'react-icons/md';
 import Modal from 'react-modal';
 import style from './AddRoom.module.scss';
 
@@ -51,7 +52,13 @@ const AddRoom = ({ isOpen, toggleModal, setRooms }) => {
       isOpen={isOpen}
       onRequestClose={toggleModal}
     >
-      <h2 className={style.header}>Добавить комнату</h2>
+      <button
+        className={style.close}
+        onClick={toggleModal}
+      >
+        <MdClose />
+      </button>
+      <h2 className={style.header}>Создание комнаты</h2>
       <form
         className={style.form}
         onSubmit={handleSubmit(data => {
