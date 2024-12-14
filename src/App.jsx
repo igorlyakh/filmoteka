@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import Loader from '@/components/Loader/Loader';
 import LoginPage from '@/pages/LoginPage';
 import RegistrationPage from '@/pages/RegistrationPage';
 import RoomPage from '@/pages/RoomPage';
@@ -7,24 +8,12 @@ import PrivateRoute from '@/routes/PrivateRoute';
 import RestrictedRoutes from '@/routes/RestrictedRoutes';
 import useAuthStore from '@/store';
 import { Route, Routes } from 'react-router-dom';
-import { PuffLoader } from 'react-spinners';
 
 const App = () => {
   const { isLoading } = useAuthStore();
 
   if (isLoading) {
-    return (
-      <PuffLoader
-        color="#ffffff"
-        size={100}
-        cssOverride={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-      />
-    );
+    return <Loader />;
   }
 
   return (
