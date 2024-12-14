@@ -3,6 +3,7 @@ import useAuthStore from '@/store';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import EmptyHeader from '../EmptyHeader';
 
 const MovieList = () => {
   const { roomId } = useParams();
@@ -39,7 +40,15 @@ const MovieList = () => {
     };
   }, [token]);
 
-  return <>MovieList</>;
+  return (
+    <>
+      {movies.length < 1 ? (
+        <EmptyHeader text="В комнате нет фильмов." />
+      ) : (
+        <div>Films.</div>
+      )}
+    </>
+  );
 };
 
 export default MovieList;
