@@ -1,5 +1,7 @@
+import MovieList from '@/components/MovieList';
+
 const RoomPage = () => {
-  return <div>RoomPage</div>;
+  return <MovieList />;
 };
 
 export default RoomPage;

@@ -1,10 +1,9 @@
 import toast from 'react-hot-toast';
 import axiosInstance from './axios';
 
-const createRoom = async data => {
+const getMovies = async roomId => {
   try {
-    const res = await axiosInstance.post('/room', data);
-    toast.success('Комната успешно создана!');
+    const res = await axiosInstance.get(`/${roomId}/movie`);
     return res.data;
   } catch (error) {
     toast.error(error.response?.data?.message);
@@ -12,4 +11,4 @@ const createRoom = async data => {
   }
 };
 
-export default createRoom;
+export default getMovies;
