@@ -8,3 +8,18 @@
   border-bottom: 1px solid var.$hover-gray;
   background-color: var.$dark-gray;
 }
+
+.logo {
+  color: #2ecc71;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: -3px -1px 5px #2ecc71;
+  transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+@media screen and (min-width: 1024px) {
+  .logo:hover {
+    color: #27ae60;
+    text-shadow: -3px -1px 10px #27ae60;
+  }
+}
