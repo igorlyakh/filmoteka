@@ -3,7 +3,7 @@ import useAuthStore from '@/store/store';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import AddRoom from '../AddRoom';
-import NoRoomsHeader from '../NoRoomsHeader';
+import EmptyHeader from '../EmptyHeader';
 import RoomItem from '../RoomItem';
 import style from './RoomsList.module.scss';
 
@@ -83,7 +83,7 @@ const RoomsList = () => {
         </ul>
       ) : (
         <>
-          <NoRoomsHeader />
+          <EmptyHeader text="У вас нет комнат!" />
         </>
       )}
       <button
