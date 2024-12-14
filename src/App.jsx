@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout';
-import Loader from '@/components/Loader/Loader';
+import Loader from '@/components/Loader';
 import LoginPage from '@/pages/LoginPage';
 import RegistrationPage from '@/pages/RegistrationPage';
 import RoomPage from '@/pages/RoomPage';
