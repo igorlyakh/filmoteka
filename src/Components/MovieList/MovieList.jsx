@@ -4,16 +4,18 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import EmptyHeader from '../EmptyHeader';
+import styles from './MovieList.module.scss';
 
 const MovieList = () => {
   const { roomId } = useParams();
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([{ id: 1, title: 'First movie' }]);
+  // const [movies, setMovies] = useState([]);
   const { token } = useAuthStore();
 
   useEffect(() => {
     const getData = async () => {
-      const movies = await getMovies(roomId);
-      setMovies(movies);
+      const movie = await getMovies(roomId);
+      setMovies(prev => [...prev, ...movie]);
     };
 
     getData();
@@ -39,13 +41,15 @@ const MovieList = () => {
       socket.disconnect();
     };
   }, [token]);
-
   return (
     <>
       {movies.length < 1 ? (
         <EmptyHeader text="В комнате нет фильмов." />
       ) : (
-        <div>Films.</div>
+        <>
+          <ul className={styles.list}></ul>
+          <button>Случайный фильм</button>
+        </>
       )}
     </>
   );

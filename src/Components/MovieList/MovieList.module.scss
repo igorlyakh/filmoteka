@@ -1,0 +1,30 @@
+.list {
+  list-style: none;
+  color: var.$white;
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+@media screen and (min-width: 567px) {
+  .list {
+    margin-top: 25px;
+    flex-direction: row;
+    gap: 25px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    gap: 50px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .list {
+    gap: 75px;
+  }
+}
