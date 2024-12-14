@@ -8,6 +8,22 @@
   margin: 20px auto 0 auto;
 }
 
+.addBtn {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  background-color: var.$colored-btn;
+  color: var.$white;
+  cursor: pointer;
+  width: 200px;
+  transition: background-color 250ms ease;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
 @media (min-width: 576px) {
   .wrapper {
     width: 350px;
@@ -20,5 +36,17 @@
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .addBtn {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .addBtn {
+    &:hover {
+      background-color: var.$colored-btn-hover;
+    }
   }
 }

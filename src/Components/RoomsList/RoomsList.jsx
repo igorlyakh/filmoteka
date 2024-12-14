@@ -86,7 +86,12 @@ const RoomsList = () => {
           <NoRoomsHeader />
         </>
       )}
-      <button onClick={toggleModal}>Создать комнату</button>
+      <button
+        className={style.addBtn}
+        onClick={toggleModal}
+      >
+        Создать комнату
+      </button>
     </>
   );
 };
