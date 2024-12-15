@@ -1,10 +1,12 @@
 import deleteRoom from '@/api/deleteRoom';
 import { IoIosArrowForward } from 'react-icons/io';
 import { TiDelete } from 'react-icons/ti';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import style from './RoomItem.module.scss';
 
 const RoomItem = ({ name, roomId, onDeleteRoom }) => {
+  const location = useLocation();
+
   const removeRoom = async roomId => {
     await deleteRoom(roomId);
   };
@@ -24,6 +26,7 @@ const RoomItem = ({ name, roomId, onDeleteRoom }) => {
       <Link
         className={style.link}
         to={`${roomId}`}
+        state={{ from: location }}
       >
         Войти в комнату <IoIosArrowForward />
       </Link>

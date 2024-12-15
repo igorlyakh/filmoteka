@@ -1,14 +1,20 @@
 import getMovies from '@/api/getMovies';
 import useAuthStore from '@/store';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import EmptyHeader from '../EmptyHeader';
 import styles from './MovieList.module.scss';
 
 const MovieList = () => {
+  const location = useLocation();
+  console.log(location);
+  const backLick = useRef(location.state?.from ?? '/rooms');
+
   const { roomId } = useParams();
+
   const [movies, setMovies] = useState([{ id: 1, title: 'First movie' }]);
+
   // const [movies, setMovies] = useState([]);
   const { token } = useAuthStore();
 
@@ -43,6 +49,12 @@ const MovieList = () => {
   }, [token]);
   return (
     <>
+      <Link
+        to={backLick.current}
+        className={styles.backLink}
+      >
+        Назад
+      </Link>
       {movies.length < 1 ? (
         <EmptyHeader text="В комнате нет фильмов." />
       ) : (
