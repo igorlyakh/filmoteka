@@ -11,6 +11,7 @@ const Menu = () => {
           <NavLink
             to="rooms"
             className={styled.navLink}
+            end
           >
             Комнаты
           </NavLink>
