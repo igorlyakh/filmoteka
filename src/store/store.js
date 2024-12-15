@@ -1,4 +1,6 @@
 import axiosInstance from '@/api/axios';
+import login from '@/api/login';
+import registration from '@/api/registration';
 import toast from 'react-hot-toast';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
@@ -21,10 +23,9 @@ const useAuthStore = create(
     login: async data => {
       set({ isLoading: true, error: null, isLogin: false });
       try {
-        const res = await axiosInstance.post('/auth/login', data);
-        const { accessToken, name, email } = res.data;
-        setData(accessToken, name, email, true);
-        set({ token: accessToken, name, email, isLogin: true });
+        const { token, name, email } = await login(data);
+        setData(token, name, email, true);
+        set({ token, name, email, isLogin: true });
         toast.success(`Добро пожаловать, ${name}!`);
       } catch (error) {
         set({
@@ -38,10 +39,9 @@ const useAuthStore = create(
     registration: async data => {
       set({ isLoading: true, error: null, isLogin: false });
       try {
-        const res = await axiosInstance.post('/auth/registration', data);
-        const { accessToken, name, email } = res.data;
-        setData(accessToken, name, email, true);
-        set({ token: accessToken, name, email, isLogin: true });
+        const { token, name, email } = await registration(data);
+        setData(token, name, email, true);
+        set({ token, name, email, isLogin: true });
         toast.success(`Добро пожаловать, ${name}!`);
       } catch (error) {
         set({
