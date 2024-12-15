@@ -8,7 +8,6 @@ import styles from './MovieList.module.scss';
 
 const MovieList = () => {
   const location = useLocation();
-  console.log(location);
   const backLick = useRef(location.state?.from ?? '/rooms');
 
   const { roomId } = useParams();
