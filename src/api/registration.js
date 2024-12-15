@@ -1,3 +1,5 @@
+import axiosInstance from './axios';
+
 const registration = async data => {
   const res = await axiosInstance.post('/auth/registration', data);
   const { accessToken, name, email } = res.data;
