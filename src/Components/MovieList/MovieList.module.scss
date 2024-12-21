@@ -12,6 +12,7 @@
 @media screen and (min-width: 567px) {
   .list {
     margin-top: 25px;
+    justify-content: center;
     flex-direction: row;
     gap: 25px;
   }
@@ -25,6 +26,7 @@
 
 @media screen and (min-width: 1024px) {
   .list {
+    justify-content: flex-start;
     gap: 75px;
   }
 }

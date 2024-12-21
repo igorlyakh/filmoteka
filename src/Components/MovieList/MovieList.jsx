@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import EmptyHeader from '../EmptyHeader';
+import MovieItem from '../MovieItem/MovieItem';
 import styles from './MovieList.module.scss';
 
 const MovieList = () => {
@@ -12,15 +13,14 @@ const MovieList = () => {
 
   const { roomId } = useParams();
 
-  const [movies, setMovies] = useState([{ id: 1, title: 'First movie' }]);
+  const [movies, setMovies] = useState([]);
 
-  // const [movies, setMovies] = useState([]);
   const { token } = useAuthStore();
 
   useEffect(() => {
     const getData = async () => {
       const movie = await getMovies(roomId);
-      setMovies(prev => [...prev, ...movie]);
+      setMovies(movie);
     };
 
     getData();
@@ -58,7 +58,15 @@ const MovieList = () => {
         <EmptyHeader text="В комнате нет фильмов." />
       ) : (
         <>
-          <ul className={styles.list}></ul>
+          <ul className={styles.list}>
+            {movies.map(movie => (
+              <MovieItem
+                key={movie.id}
+                title={movie.title}
+                poster={movie.poster}
+              />
+            ))}
+          </ul>
           <button>Случайный фильм</button>
         </>
       )}

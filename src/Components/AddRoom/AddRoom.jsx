@@ -69,7 +69,7 @@ const AddRoom = ({ isOpen, toggleModal, setRooms }) => {
         <input
           className={style.input}
           type="text"
-          placeholder="Enter room name"
+          placeholder="Введите название комнаты"
           required
           {...register('name', {
             required: 'Укажите название комнаты!',
