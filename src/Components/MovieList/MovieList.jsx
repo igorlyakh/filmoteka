@@ -1,6 +1,7 @@
 import getMovies from '@/api/getMovies';
 import useAuthStore from '@/store';
 import { useEffect, useRef, useState } from 'react';
+import { IoMdArrowBack } from 'react-icons/io';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import EmptyHeader from '../EmptyHeader';
@@ -52,7 +53,8 @@ const MovieList = () => {
         to={backLick.current}
         className={styles.backLink}
       >
-        Назад
+        <IoMdArrowBack />
+        <span>Назад</span>
       </Link>
       {movies.length < 1 ? (
         <EmptyHeader text="В комнате нет фильмов." />

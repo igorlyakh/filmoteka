@@ -9,12 +9,25 @@
   align-items: center;
 }
 
+.backLink {
+  display: flex;
+  align-items: center;
+  color: var.$white;
+  margin-top: 20px;
+  gap: 5px;
+  transition: transform 250ms ease;
+  font-size: 16px;
+}
+
 @media screen and (min-width: 567px) {
   .list {
     margin-top: 25px;
     justify-content: center;
     flex-direction: row;
     gap: 25px;
+  }
+  .backLink {
+    font-size: 18px;
   }
 }
 
@@ -28,5 +41,11 @@
   .list {
     justify-content: flex-start;
     gap: 75px;
+  }
+  .backLink {
+    font-size: 20px;
+    &:hover {
+      transform: translate(-2px, -2px);
+    }
   }
 }
