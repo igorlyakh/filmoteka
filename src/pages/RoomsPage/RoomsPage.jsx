@@ -1,4 +1,7 @@
 import getRooms from '@/api/getRooms';
+import AddRoom from '@/components/AddRoom';
+import AddRoomBtn from '@/components/AddRoomBtn';
+import EmptyHeader from '@/components/EmptyHeader';
 import RoomsList from '@/components/RoomsList';
 import useAuthStore from '@/store';
 import { useEffect, useState } from 'react';
@@ -6,8 +9,13 @@ import { io } from 'socket.io-client';
 
 const RoomsPage = () => {
   const [rooms, setRooms] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { token } = useAuthStore();
+
+  const toggleModal = () => {
+    setIsOpen(prev => !prev);
+  };
 
   useEffect(() => {
     const socket = io('http://localhost:3001', {
@@ -48,11 +56,24 @@ const RoomsPage = () => {
   }, []);
 
   return (
-    <RoomsList
-      rooms={rooms}
-      setRooms={setRooms}
-    />
+    <>
+      <AddRoom
+        isOpen={isOpen}
+        toggleModal={toggleModal}
+        setRooms={setRooms}
+      />
+      {rooms.length > 0 ? (
+        <RoomsList
+          rooms={rooms}
+          setRooms={setRooms}
+        />
+      ) : (
+        <EmptyHeader text="У вас нет комнат!" />
+      )}
+      <AddRoomBtn handler={toggleModal} />
+    </>
   );
+  <></>;
 };
 
 export default RoomsPage;
