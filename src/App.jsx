@@ -1,13 +1,15 @@
 import Layout from '@/components/Layout';
 import Loader from '@/components/Loader';
-import LoginPage from '@/pages/LoginPage';
-import RegistrationPage from '@/pages/RegistrationPage';
-import RoomPage from '@/pages/RoomPage';
-import RoomsPage from '@/pages/RoomsPage';
 import PrivateRoute from '@/routes/PrivateRoute';
 import RestrictedRoutes from '@/routes/RestrictedRoutes';
 import useAuthStore from '@/store';
+import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+const RoomPage = lazy(() => import('@/pages/RoomPage'));
+const RoomsPage = lazy(() => import('@/pages/RoomsPage'));
+const LoginPage = lazy(() => import('@/pages/LoginPage'));
+const RegistrationPage = lazy(() => import('@/pages/RegistrationPage'));
 
 const App = () => {
   const { isLoading } = useAuthStore();
@@ -17,53 +19,55 @@ const App = () => {
   }
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Layout />}
-      >
+    <Suspense fallback={<Loader />}>
+      <Routes>
         <Route
-          index
-          element={<div>Home Page</div>}
-        />
-        <Route
-          path="login"
-          element={
-            <RestrictedRoutes
-              component={LoginPage}
-              redirectTo="/rooms"
-            />
-          }
-        />
-        <Route
-          path="registration"
-          element={
-            <RestrictedRoutes
-              component={RegistrationPage}
-              redirectTo="/rooms"
-            />
-          }
-        />
-        <Route
-          path="rooms"
-          element={
-            <PrivateRoute
-              component={RoomsPage}
-              redirectTo="/login"
-            />
-          }
-        />
-        <Route
-          path="rooms/:roomId"
-          element={
-            <PrivateRoute
-              component={RoomPage}
-              redirectTo="/login"
-            />
-          }
-        />
-      </Route>
-    </Routes>
+          path="/"
+          element={<Layout />}
+        >
+          <Route
+            index
+            element={<div>Home Page</div>}
+          />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoutes
+                component={LoginPage}
+                redirectTo="/rooms"
+              />
+            }
+          />
+          <Route
+            path="registration"
+            element={
+              <RestrictedRoutes
+                component={RegistrationPage}
+                redirectTo="/rooms"
+              />
+            }
+          />
+          <Route
+            path="rooms"
+            element={
+              <PrivateRoute
+                component={RoomsPage}
+                redirectTo="/login"
+              />
+            }
+          />
+          <Route
+            path="rooms/:roomId"
+            element={
+              <PrivateRoute
+                component={RoomPage}
+                redirectTo="/login"
+              />
+            }
+          />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
 
