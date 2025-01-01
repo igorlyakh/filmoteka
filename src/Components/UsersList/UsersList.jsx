@@ -6,27 +6,7 @@ const UserList = () => {
     <ul className={style.list}>
       <li className={style.listItem}>
         <span>Имя: </span>
-        <span>Admin2</span>
-        <button
-          type="button"
-          className={style.btn}
-        >
-          <IoIosRemoveCircleOutline />
-        </button>
-      </li>
-      <li className={style.listItem}>
-        <span>Имя: </span>
-        <span>Admin2</span>
-        <button
-          type="button"
-          className={style.btn}
-        >
-          <IoIosRemoveCircleOutline />
-        </button>
-      </li>
-      <li className={style.listItem}>
-        <span>Имя: </span>
-        <span>Admin2</span>
+        <span>user.name</span>
         <button
           type="button"
           className={style.btn}
