@@ -6,6 +6,7 @@ import RoomsList from '@/components/RoomsList';
 import useAuthStore from '@/store';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import UsersList from '../../components/UsersList';
 
 const RoomsPage = () => {
   const [rooms, setRooms] = useState([]);
@@ -63,10 +64,13 @@ const RoomsPage = () => {
         setRooms={setRooms}
       />
       {rooms.length > 0 ? (
-        <RoomsList
-          rooms={rooms}
-          setRooms={setRooms}
-        />
+        <>
+          <UsersList />
+          <RoomsList
+            rooms={rooms}
+            setRooms={setRooms}
+          />
+        </>
       ) : (
         <EmptyHeader text="У вас нет комнат!" />
       )}
