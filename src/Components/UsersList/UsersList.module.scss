@@ -19,6 +19,7 @@
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  user-select: none;
 }
 
 .btn {
@@ -31,4 +32,32 @@
   cursor: pointer;
   font-size: 18px;
   transition: color 250ms ease;
+}
+
+@media screen and (min-width: 567px) {
+  .list {
+    gap: 25px;
+  }
+  .listItem {
+    padding: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .listItem {
+    padding: 15px;
+    font-size: 18px;
+  }
+  .btn {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .btn {
+    font-size: 22px;
+    &:hover {
+      color: var.$delete-btn;
+    }
+  }
 }
