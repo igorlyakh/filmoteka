@@ -34,12 +34,22 @@
   transition: color 250ms ease;
 }
 
+.title {
+  color: var.$white;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
 @media screen and (min-width: 567px) {
   .list {
     gap: 25px;
   }
   .listItem {
     padding: 10px;
+  }
+  .title {
+    font-size: 20px;
   }
 }
 
@@ -51,6 +61,9 @@
   .btn {
     font-size: 20px;
   }
+  .title {
+    font-size: 24px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -59,5 +72,8 @@
     &:hover {
       color: var.$delete-btn;
     }
+  }
+  .title {
+    font-size: 28px;
   }
 }
