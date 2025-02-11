@@ -1,17 +1,13 @@
 import getMovies from '@/api/getMovies';
 import useAuthStore from '@/store';
-import { useEffect, useRef, useState } from 'react';
-import { IoMdArrowBack } from 'react-icons/io';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import EmptyHeader from '../EmptyHeader';
 import MovieItem from '../MovieItem/MovieItem';
 import styles from './MovieList.module.scss';
 
 const MovieList = () => {
-  const location = useLocation();
-  const backLink = useRef(location.state?.from ?? '/rooms');
-
   const { roomId } = useParams();
 
   const [movies, setMovies] = useState([]);
@@ -49,13 +45,6 @@ const MovieList = () => {
   }, [token]);
   return (
     <>
-      <Link
-        to={backLink.current}
-        className={styles.backLink}
-      >
-        <IoMdArrowBack />
-        <span>Назад</span>
-      </Link>
       {movies.length < 1 ? (
         <EmptyHeader text="В комнате нет фильмов." />
       ) : (
