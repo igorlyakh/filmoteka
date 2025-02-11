@@ -10,7 +10,7 @@ import styles from './MovieList.module.scss';
 
 const MovieList = () => {
   const location = useLocation();
-  const backLick = useRef(location.state?.from ?? '/rooms');
+  const backLink = useRef(location.state?.from ?? '/rooms');
 
   const { roomId } = useParams();
 
@@ -50,7 +50,7 @@ const MovieList = () => {
   return (
     <>
       <Link
-        to={backLick.current}
+        to={backLink.current}
         className={styles.backLink}
       >
         <IoMdArrowBack />
