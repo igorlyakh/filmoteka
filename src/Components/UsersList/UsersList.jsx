@@ -11,8 +11,12 @@ const UserList = () => {
   const [users, setUsers] = useState([]);
 
   const handlerKickUser = async userId => {
-    await kickUserFromRoom(roomId, userId);
-    setUsers(prevState => prevState.filter(user => user.id !== userId));
+    try {
+      await kickUserFromRoom(roomId, userId);
+      setUsers(prevState => prevState.filter(user => user.id !== userId));
+    } catch (error) {
+      return;
+    }
   };
 
   useEffect(() => {
