@@ -1,7 +1,28 @@
+import getUsersInRoom from '@/api/getUsersInRoom';
+import kickUserFromRoom from '@/api/kickUserFromRoom';
+import { useEffect, useState } from 'react';
 import { IoIosRemoveCircleOutline } from 'react-icons/io';
+import { useParams } from 'react-router-dom';
 import style from './UsersList.module.scss';
 
-const UserList = ({ users }) => {
+const UserList = () => {
+  const { roomId } = useParams();
+
+  const [users, setUsers] = useState([]);
+
+  const handlerKickUser = async userId => {
+    await kickUserFromRoom(roomId, userId);
+    setUsers(prevState => prevState.filter(user => user.id !== userId));
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      const { users } = await getUsersInRoom(roomId);
+      setUsers(users);
+    };
+    getData();
+  }, []);
+
   return (
     <>
       <h2 className={style.title}>Пользователи в комнате:</h2>
@@ -14,6 +35,9 @@ const UserList = ({ users }) => {
             <span>Имя: </span>
             <span>{user.name}</span>
             <button
+              onClick={() => {
+                handlerKickUser(user.id);
+              }}
               type="button"
               className={style.btn}
             >
