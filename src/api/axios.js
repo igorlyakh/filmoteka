@@ -25,7 +25,6 @@ axiosInstance.interceptors.response.use(
 
     if (
       error.response?.status === 401 &&
-      error.config &&
       !originalRequest._isRetry &&
       error.response?.data?.message !== 'Неверный логин или пароль!'
     ) {
@@ -39,11 +38,20 @@ axiosInstance.interceptors.response.use(
         const { accessToken } = res.data;
         localStorage.setItem('token', accessToken);
         useAuthStore.setState({ token: accessToken });
-        config.headers.Authorization = `Bearer ${accessToken}`;
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         return axiosInstance.request(originalRequest);
-      } catch (error) {
-        return Promise.reject(error);
+      } catch (refreshError) {
+        localStorage.setItem('token', null);
+        localStorage.setItem('isLogin', false);
+        localStorage.setItem('name', null);
+        localStorage.setItem('email', null);
+        useAuthStore.setState({
+          token: null,
+          name: null,
+          email: null,
+          isLogin: false,
+        });
+        return Promise.reject(refreshError);
       }
     }
     return Promise.reject(error);
