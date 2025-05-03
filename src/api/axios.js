@@ -22,12 +22,14 @@ axiosInstance.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config;
-
     if (
       error.response?.status === 401 &&
       !originalRequest._isRetry &&
       error.response?.data?.message !== 'Неверный логин или пароль!'
     ) {
+      useAuthStore.setState({
+        isLoading: true,
+      });
       originalRequest._isRetry = true;
       try {
         const res = await axios.post(
@@ -52,6 +54,10 @@ axiosInstance.interceptors.response.use(
           isLogin: false,
         });
         return Promise.reject(refreshError);
+      } finally {
+        useAuthStore.setState({
+          isLoading: false,
+        });
       }
     }
     return Promise.reject(error);
