@@ -1,6 +1,6 @@
 import getRooms from '@/api/getRooms';
+import AddBtn from '@/components/AddBtn';
 import AddRoom from '@/components/AddRoom';
-import AddRoomBtn from '@/components/AddRoomBtn';
 import EmptyHeader from '@/components/EmptyHeader';
 import RoomsList from '@/components/RoomsList';
 import useAuthStore from '@/store';
@@ -70,7 +70,7 @@ const RoomsPage = () => {
       ) : (
         <EmptyHeader text="У вас нет комнат!" />
       )}
-      <AddRoomBtn handler={toggleModal} />
+      <AddBtn handler={toggleModal} />
     </>
   );
   <></>;
