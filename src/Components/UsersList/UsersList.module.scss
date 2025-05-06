@@ -41,6 +41,19 @@
   font-size: 16px;
 }
 
+.addBtn {
+  background-color: transparent;
+  color: var.$white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto 0 auto;
+  transition: color 250ms ease;
+}
+
 @media screen and (min-width: 567px) {
   .list {
     gap: 25px;
@@ -75,5 +88,8 @@
   }
   .title {
     font-size: 28px;
+  }
+  .addBtn:hover {
+    color: var.$invite-btn-hover;
   }
 }

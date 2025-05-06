@@ -1,7 +1,7 @@
 import getUsersInRoom from '@/api/getUsersInRoom';
 import kickUserFromRoom from '@/api/kickUserFromRoom';
 import { useEffect, useState } from 'react';
-import { IoIosRemoveCircleOutline } from 'react-icons/io';
+import { IoIosRemoveCircleOutline, IoMdPersonAdd } from 'react-icons/io';
 import { useParams } from 'react-router-dom';
 import style from './UsersList.module.scss';
 
@@ -50,6 +50,9 @@ const UserList = () => {
           </li>
         ))}
       </ul>
+      <button className={style.addBtn}>
+        <IoMdPersonAdd />
+      </button>
     </>
   );
 };
