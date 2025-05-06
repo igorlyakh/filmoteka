@@ -1,5 +1,6 @@
 import useAuthStore from '@/store/store';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const baseURL = 'http://localhost:3001/api';
 //! Prod server
@@ -53,6 +54,7 @@ axiosInstance.interceptors.response.use(
           email: null,
           isLogin: false,
         });
+        toast.error('Пожалуйста, войдите в систему снова!');
         return Promise.reject(refreshError);
       } finally {
         useAuthStore.setState({
