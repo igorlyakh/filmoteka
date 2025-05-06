@@ -55,6 +55,8 @@ const MovieList = () => {
                 key={movie.id}
                 title={movie.title}
                 poster={movie.poster}
+                movieId={movie.id}
+                roomId={roomId}
               />
             ))}
           </ul>
