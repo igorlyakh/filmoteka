@@ -37,7 +37,7 @@ const RoomsPage = () => {
 
     socket.on('kickFromRoom', data => {
       setRooms(prevRooms => {
-        return prevRooms.filter(room => room.id !== data.id);
+        return prevRooms.filter(room => room.id !== data);
       });
     });
 
