@@ -1,6 +1,6 @@
 import getRooms from '@/api/getRooms';
 import AddBtn from '@/components/AddBtn';
-import AddRoom from '@/components/AddRoom';
+import AddForm from '@/components/AddForm';
 import EmptyHeader from '@/components/EmptyHeader';
 import RoomsList from '@/components/RoomsList';
 import useAuthStore from '@/store';
@@ -57,10 +57,11 @@ const RoomsPage = () => {
 
   return (
     <>
-      <AddRoom
+      <AddForm
         isOpen={isOpen}
         toggleModal={toggleModal}
         setRooms={setRooms}
+        type="room"
       />
       {rooms.length > 0 ? (
         <RoomsList
