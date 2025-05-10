@@ -1,3 +1,4 @@
+import addUserToRoom from '@/api/addUserToRoom';
 import createRoom from '@/api/createRoom';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -67,7 +68,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const AddForm = ({ isOpen, toggleModal, setData, type }) => {
+const AddForm = ({ isOpen, toggleModal, setData, type, roomId = 0 }) => {
   const { register, handleSubmit, reset } = useForm();
 
   const onError = errors => {
@@ -80,6 +81,10 @@ const AddForm = ({ isOpen, toggleModal, setData, type }) => {
     let res;
     if (type === 'room') {
       res = await createRoom(data);
+    }
+    if (type === 'user') {
+      res = await addUserToRoom(Number(roomId), data);
+      console.log(res);
     }
     setData(prevData => {
       if (Array.isArray(prevData)) {

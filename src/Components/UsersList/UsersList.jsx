@@ -1,5 +1,6 @@
 import getUsersInRoom from '@/api/getUsersInRoom';
 import kickUserFromRoom from '@/api/kickUserFromRoom';
+import AddForm from '@/components/AddForm';
 import { useEffect, useState } from 'react';
 import { IoIosRemoveCircleOutline, IoMdPersonAdd } from 'react-icons/io';
 import { useParams } from 'react-router-dom';
@@ -9,6 +10,11 @@ const UserList = () => {
   const { roomId } = useParams();
 
   const [users, setUsers] = useState([]);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleModal = () => {
+    setIsOpen(prev => !prev);
+  };
 
   const handlerKickUser = async userId => {
     try {
@@ -50,7 +56,17 @@ const UserList = () => {
           </li>
         ))}
       </ul>
-      <button className={style.addBtn}>
+      <AddForm
+        isOpen={isOpen}
+        toggleModal={toggleModal}
+        setData={setUsers}
+        type="user"
+        roomId={roomId}
+      />
+      <button
+        className={style.addBtn}
+        onClick={toggleModal}
+      >
         <IoMdPersonAdd />
       </button>
     </>
