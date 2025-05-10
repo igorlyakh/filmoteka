@@ -60,7 +60,7 @@ const RoomsPage = () => {
       <AddForm
         isOpen={isOpen}
         toggleModal={toggleModal}
-        setRooms={setRooms}
+        setData={setRooms}
         type="room"
       />
       {rooms.length > 0 ? (

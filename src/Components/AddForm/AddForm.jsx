@@ -1,5 +1,7 @@
+import createRoom from '@/api/createRoom';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { MdClose } from 'react-icons/md';
 import Modal from 'react-modal';
 import styles from './AddForm.module.scss';
@@ -67,6 +69,29 @@ Modal.setAppElement('#root');
 
 const AddForm = ({ isOpen, toggleModal, setData, type }) => {
   const { register, handleSubmit, reset } = useForm();
+
+  const onError = errors => {
+    Object.values(errors).forEach(errors => {
+      toast.error(errors.message);
+    });
+  };
+
+  const handler = async data => {
+    let res;
+    if (type === 'room') {
+      res = await createRoom(data);
+    }
+    setData(prevData => {
+      if (Array.isArray(prevData)) {
+        return [...prevData, res];
+      } else {
+        return [data];
+      }
+    });
+    reset();
+    toggleModal();
+  };
+
   return (
     <Modal
       style={customStyles}
@@ -80,7 +105,13 @@ const AddForm = ({ isOpen, toggleModal, setData, type }) => {
         <MdClose />
       </button>
       <h2 className={styles.header}>{formType[type]}</h2>
-      <form className={styles.form}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(data => {
+          handler(data);
+          reset();
+        }, onError)}
+      >
         <input
           className={styles.input}
           type="text"
