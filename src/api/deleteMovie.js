@@ -6,7 +6,6 @@ const deleteMovie = async (movieId, roomId) => {
     await axiosInstance.delete(`/${roomId}/movie`, {
       data: { movieId },
     });
-    toast.success('Фильм удален из комнаты!');
   } catch (error) {
     if (error.response) {
       toast.error(error.response.data.message);

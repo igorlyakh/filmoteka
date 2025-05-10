@@ -4,7 +4,6 @@ import axiosInstance from './axios';
 const addMovie = async (data, roomId) => {
   try {
     const res = await axiosInstance.post(`${roomId}/movie`, data);
-    toast.success('Фильм добавлен в комнату!');
     console.log(res.data);
     return res.data;
   } catch (error) {

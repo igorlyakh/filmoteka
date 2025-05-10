@@ -3,6 +3,7 @@ import AddBtn from '@/components/AddBtn';
 import AddForm from '@/components/AddForm';
 import useAuthStore from '@/store';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import EmptyHeader from '../EmptyHeader';
@@ -39,10 +40,16 @@ const MovieList = () => {
     });
 
     socket.on('addMovie', movie => {
+      toast('В комнату добавлен фильм', {
+        icon: '🍿',
+      });
       setMovies(prev => [...prev, movie]);
     });
 
     socket.on('deleteMovie', movieId => {
+      toast('Из команты удален фильм', {
+        icon: '🍿',
+      });
       setMovies(prev => prev.filter(movie => movie.id !== movieId));
     });
 
