@@ -1,10 +1,10 @@
 import addUserToRoom from '@/api/addUserToRoom';
 import createRoom from '@/api/createRoom';
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdClose } from 'react-icons/md';
 import Modal from 'react-modal';
+import addMovie from '../../api/addMovie';
 import styles from './AddForm.module.scss';
 
 const formType = {
@@ -84,6 +84,12 @@ const AddForm = ({ isOpen, toggleModal, setData, type, roomId = 0 }) => {
     }
     if (type === 'user') {
       res = await addUserToRoom(Number(roomId), data);
+    }
+    if (type === 'movie') {
+      res = await addMovie(data, roomId);
+      reset();
+      toggleModal();
+      return;
     }
     setData(prevData => {
       if (Array.isArray(prevData)) {

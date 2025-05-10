@@ -1,4 +1,6 @@
 import getMovies from '@/api/getMovies';
+import AddBtn from '@/components/AddBtn';
+import AddForm from '@/components/AddForm';
 import useAuthStore from '@/store';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -8,6 +10,11 @@ import MovieItem from '../MovieItem/MovieItem';
 import styles from './MovieList.module.scss';
 
 const MovieList = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleModal = () => {
+    setIsOpen(prev => !prev);
+  };
+
   const { roomId } = useParams();
 
   const [movies, setMovies] = useState([]);
@@ -63,6 +70,17 @@ const MovieList = () => {
           <button>Случайный фильм</button>
         </>
       )}
+      <AddForm
+        isOpen={isOpen}
+        toggleModal={toggleModal}
+        setData={setMovies}
+        type="movie"
+        roomId={roomId}
+      />
+      <AddBtn
+        text="Добавить фильм"
+        handler={toggleModal}
+      />
     </>
   );
 };
