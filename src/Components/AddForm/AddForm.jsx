@@ -84,7 +84,6 @@ const AddForm = ({ isOpen, toggleModal, setData, type, roomId = 0 }) => {
     }
     if (type === 'user') {
       res = await addUserToRoom(Number(roomId), data);
-      console.log(res);
     }
     setData(prevData => {
       if (Array.isArray(prevData)) {

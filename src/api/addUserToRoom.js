@@ -5,7 +5,6 @@ const addUserToRoom = async (roomId, data) => {
   try {
     const res = await axiosInstance.patch(`/room/${roomId}`, data);
     toast.success('Пользователь успешно добавлен в комнату!');
-    console.log(res.data);
     return res.data;
   } catch (error) {
     toast.error(error.response?.data?.message);
