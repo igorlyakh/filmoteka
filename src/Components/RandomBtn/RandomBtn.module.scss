@@ -1,0 +1,29 @@
+.btn {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 25px auto 0 auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: var.$white;
+  background-color: var.$random-btn-main;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+@media screen and (min-width: 1024px) {
+  .btn {
+    &:hover {
+      background-color: var.$random-btn-hover;
+      transform: scale(1.05);
+    }
+  
+    &:active {
+      background-color: var.$random-btn-active;
+      transform: scale(0.95);
+    }
+  }
+}

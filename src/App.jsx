@@ -5,8 +5,8 @@ import RestrictedRoutes from '@/routes/RestrictedRoutes';
 import useAuthStore from '@/store';
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import NotFoundPage from './pages/NotFound';
 
+const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 const RoomPage = lazy(() => import('@/pages/RoomPage'));
 const RoomsPage = lazy(() => import('@/pages/RoomsPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
