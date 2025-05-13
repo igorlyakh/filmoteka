@@ -7,7 +7,7 @@ import RandomBtn from '@/components/RandomBtn';
 import useAuthStore from '@/store';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import styles from './MovieList.module.scss';
 
@@ -18,6 +18,8 @@ const MovieList = () => {
   };
 
   const { roomId } = useParams();
+
+  const navigate = useNavigate();
 
   const [movies, setMovies] = useState([]);
 
@@ -38,6 +40,18 @@ const MovieList = () => {
       extraHeaders: {
         Authorization: `Bearer ${token}`,
       },
+    });
+
+    socket.on('kickFromRoom', data => {
+      toast('Вас исключили из комнаты', {
+        icon: '❗',
+      });
+      if (location.pathname === `/rooms/${data}`) {
+        console.log('test');
+        navigate('/rooms', {
+          replace: true,
+        });
+      }
     });
 
     socket.on('addMovie', movie => {
