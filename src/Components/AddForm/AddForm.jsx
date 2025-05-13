@@ -1,10 +1,10 @@
+import addMovie from '@/api/addMovie';
 import addUserToRoom from '@/api/addUserToRoom';
 import createRoom from '@/api/createRoom';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdClose } from 'react-icons/md';
 import Modal from 'react-modal';
-import addMovie from '../../api/addMovie';
 import styles from './AddForm.module.scss';
 
 const formType = {
