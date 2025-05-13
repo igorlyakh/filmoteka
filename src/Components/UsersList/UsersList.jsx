@@ -27,8 +27,12 @@ const UserList = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const { users } = await getUsersInRoom(roomId);
-      setUsers(users);
+      try {
+        const { users } = await getUsersInRoom(roomId);
+        setUsers(users);
+      } catch {
+        return;
+      }
     };
     getData();
   }, []);
@@ -36,26 +40,28 @@ const UserList = () => {
   return (
     <>
       <h2 className={style.title}>Пользователи в комнате:</h2>
-      <ul className={style.list}>
-        {users.map(user => (
-          <li
-            className={style.listItem}
-            key={user.id}
-          >
-            <span>Имя: </span>
-            <span>{user.name}</span>
-            <button
-              onClick={() => {
-                handlerKickUser(user.id);
-              }}
-              type="button"
-              className={style.btn}
+      {users && (
+        <ul className={style.list}>
+          {users.map(user => (
+            <li
+              className={style.listItem}
+              key={user.id}
             >
-              <IoIosRemoveCircleOutline />
-            </button>
-          </li>
-        ))}
-      </ul>
+              <span>Имя: </span>
+              <span>{user.name}</span>
+              <button
+                onClick={() => {
+                  handlerKickUser(user.id);
+                }}
+                type="button"
+                className={style.btn}
+              >
+                <IoIosRemoveCircleOutline />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
       <AddForm
         isOpen={isOpen}
         toggleModal={toggleModal}

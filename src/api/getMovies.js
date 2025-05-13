@@ -5,7 +5,7 @@ const getMovies = async roomId => {
     const res = await axiosInstance.get(`/${roomId}/movie`);
     return res.data;
   } catch (error) {
-    return error.response?.data?.message;
+    throw new Error(error.response?.data?.message);
   }
 };
 

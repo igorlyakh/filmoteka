@@ -5,7 +5,7 @@ const getUsersInRoom = async roomId => {
     const res = await axiosInstance.get(`/room/${roomId}/users`);
     return res.data;
   } catch (error) {
-    return error.response?.data?.message;
+    throw new Error(error.response?.data?.message);
   }
 };
 

@@ -27,8 +27,13 @@ const MovieList = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const movie = await getMovies(roomId);
-      setMovies(movie);
+      try {
+        const movie = await getMovies(roomId);
+        setMovies(movie);
+      } catch {
+        navigate('/404');
+        return;
+      }
     };
 
     getData();
