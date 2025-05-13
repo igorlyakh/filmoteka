@@ -8,7 +8,7 @@ const addUserToRoom = async (roomId, data) => {
     return res.data;
   } catch (error) {
     toast.error(error.response?.data?.message);
-    return error.response?.data?.message;
+    throw new Error(error.response?.data?.message);
   }
 };
 

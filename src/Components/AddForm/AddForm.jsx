@@ -83,7 +83,11 @@ const AddForm = ({ isOpen, toggleModal, setData, type, roomId = 0 }) => {
       res = await createRoom(data);
     }
     if (type === 'user') {
-      res = await addUserToRoom(Number(roomId), data);
+      try {
+        res = await addUserToRoom(Number(roomId), data);
+      } catch {
+        return;
+      }
     }
     if (type === 'movie') {
       res = await addMovie(data, roomId);
