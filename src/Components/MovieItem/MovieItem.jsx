@@ -2,9 +2,9 @@ import deleteMovie from '@/api/deleteMovie';
 import { IoIosRemoveCircleOutline } from 'react-icons/io';
 import styles from './MovieItem.module.scss';
 
-const MovieItem = ({ title, poster, movieId, roomId }) => {
+const MovieItem = ({ title, poster, movieId, roomId, isSelected }) => {
   return (
-    <li className={styles.movieItem}>
+    <li className={`${styles.movieItem}  ${isSelected ? styles.selected : ''}`}>
       <button
         className={styles.btn}
         type="button"

@@ -5,7 +5,7 @@ import EmptyHeader from '@/components/EmptyHeader';
 import MovieItem from '@/components/MovieItem';
 import RandomBtn from '@/components/RandomBtn';
 import useAuthStore from '@/store';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
@@ -22,6 +22,11 @@ const MovieList = () => {
   const navigate = useNavigate();
 
   const [movies, setMovies] = useState([]);
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
+
+  const handleRandomSelect = useCallback(id => {
+    setSelectedMovieId(id);
+  }, []);
 
   const { token } = useAuthStore();
 
@@ -91,10 +96,14 @@ const MovieList = () => {
                 poster={movie.poster}
                 movieId={movie.id}
                 roomId={roomId}
+                isSelected={selectedMovieId === movie.id}
               />
             ))}
           </ul>
-          <RandomBtn />
+          <RandomBtn
+            movies={movies}
+            onSelect={handleRandomSelect}
+          />
         </>
       )}
       <AddForm
