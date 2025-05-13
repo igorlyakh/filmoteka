@@ -8,7 +8,12 @@ const RoomItem = ({ name, roomId, onDeleteRoom }) => {
   const location = useLocation();
 
   const removeRoom = async roomId => {
-    await deleteRoom(roomId);
+    try {
+      await deleteRoom(roomId);
+      onDeleteRoom(roomId);
+    } catch {
+      return;
+    }
   };
 
   return (
@@ -16,7 +21,6 @@ const RoomItem = ({ name, roomId, onDeleteRoom }) => {
       <button
         onClick={() => {
           removeRoom(Number(roomId));
-          onDeleteRoom(roomId);
         }}
         className={style.deleteButton}
       >
