@@ -2,7 +2,7 @@ import useAuthStore from '@/store/store';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const baseURL = import.meta.env.VITE_BACKEND_URL;
+const baseURL = `${import.meta.env.VITE_BACKEND_URL}/api`;
 //! Prod server
 //! const baseURL = ''https://filmoteka-server.onrender.com/api''
 
