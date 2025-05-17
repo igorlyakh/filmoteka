@@ -15,6 +15,9 @@ const MovieItem = ({ title, poster, movieId, roomId, isSelected }) => {
     }
   }, [isSelected]);
 
+  const img =
+    poster === 'https://www.themoviedb.org/t/p/original/7rhzEufov6yV81d7Zwv8ZsFZl8J.jpg';
+
   return (
     <li
       className={`${styles.movieItem}  ${isSelected ? styles.selected : ''}`}
@@ -30,7 +33,11 @@ const MovieItem = ({ title, poster, movieId, roomId, isSelected }) => {
         <IoIosRemoveCircleOutline />
       </button>
       <img
-        src={poster}
+        src={
+          img
+            ? 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
+            : poster
+        }
         alt={title}
         width={200}
       />
