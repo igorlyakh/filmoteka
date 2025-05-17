@@ -1,0 +1,98 @@
+
+.home {
+  min-height: 100dvh;
+  padding: 80px 16px;
+  color: var.$white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.container {
+  max-width: 960px;
+  width: 100%;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 24px;
+
+  span {
+    color: var.$colored-btn;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 56px;
+  }
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var.$light-grey;
+  margin-bottom: 32px;
+
+  span {
+    color: var.$random-btn-main;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.cta {
+  display: inline-block;
+  margin-bottom: 64px;
+  padding: 12px 32px;
+  background-color: var.$colored-btn;
+  color: var.$white;
+  font-size: 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: var.$colored-btn-hover;
+  }
+}
+
+.steps {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.step {
+  background-color: var.$btn-gray;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var.$hover-gray;
+  transition: transform 0.3s ease;
+}
+
+.stepNumber {
+  color: var.$colored-btn;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.stepTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var.$white;
+}
+
+.stepDescription {
+  font-size: 15px;
+  color: var.$light-grey;
+}

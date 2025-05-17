@@ -7,6 +7,7 @@ import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 const NotFoundPage = lazy(() => import('@/pages/NotFound'));
+const HomePage = lazy(() => import('@/pages/HomePage'));
 const RoomPage = lazy(() => import('@/pages/RoomPage'));
 const RoomsPage = lazy(() => import('@/pages/RoomsPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
@@ -28,7 +29,7 @@ const App = () => {
         >
           <Route
             index
-            element={<div>Home Page</div>}
+            element={<HomePage />}
           />
           <Route
             path="login"
