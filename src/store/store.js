@@ -67,6 +67,7 @@ const useAuthStore = create(
         set({ isLoading: false });
       }
     },
+    setIsLoading: isLoading => set({ isLoading }),
   }))
 );
 

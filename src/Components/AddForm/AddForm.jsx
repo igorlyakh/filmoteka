@@ -1,6 +1,7 @@
 import addMovie from '@/api/addMovie';
 import addUserToRoom from '@/api/addUserToRoom';
 import createRoom from '@/api/createRoom';
+import useAuthStore from '@/store';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdClose } from 'react-icons/md';
@@ -69,6 +70,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const AddForm = ({ isOpen, toggleModal, setData, type, roomId = 0 }) => {
+  const { setIsLoading } = useAuthStore();
+
   const { register, handleSubmit, reset } = useForm();
 
   const onError = errors => {
@@ -80,19 +83,26 @@ const AddForm = ({ isOpen, toggleModal, setData, type, roomId = 0 }) => {
   const handler = async data => {
     let res;
     if (type === 'room') {
+      setIsLoading(true);
       res = await createRoom(data);
+      setIsLoading(false);
     }
     if (type === 'user') {
       try {
+        setIsLoading(true);
         res = await addUserToRoom(Number(roomId), data);
       } catch {
         return;
+      } finally {
+        setIsLoading(false);
       }
     }
     if (type === 'movie') {
+      setIsLoading(true);
       res = await addMovie(data, roomId);
       reset();
       toggleModal();
+      setIsLoading(false);
       return;
     }
     setData(prevData => {
