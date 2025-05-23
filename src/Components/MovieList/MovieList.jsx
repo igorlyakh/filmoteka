@@ -5,13 +5,15 @@ import EmptyHeader from '@/components/EmptyHeader';
 import MovieItem from '@/components/MovieItem';
 import RandomBtn from '@/components/RandomBtn';
 import useAuthStore from '@/store';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import styles from './MovieList.module.scss';
 
 const MovieList = () => {
+  const socketRef = useRef(null);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggleModal = () => {
     setIsOpen(prev => !prev);
@@ -45,14 +47,16 @@ const MovieList = () => {
   }, []);
 
   useEffect(() => {
-    const socket = io(import.meta.env.VITE_BACKEND_URL, {
-      withCredentials: true,
-      extraHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    socket.on('kickFromRoom', data => {
+    const createSocket = () => {
+      socketRef.current = io(import.meta.env.VITE_BACKEND_URL, {
+        withCredentials: true,
+        extraHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    };
+    createSocket();
+    socketRef.current.on('kickFromRoom', data => {
       toast('Вас исключили из комнаты', {
         icon: '❗',
       });
@@ -64,22 +68,33 @@ const MovieList = () => {
       }
     });
 
-    socket.on('addMovie', movie => {
+    socketRef.current.on('addMovie', movie => {
       toast('В комнату добавлен фильм', {
         icon: '🍿',
       });
       setMovies(prev => [...prev, movie]);
     });
 
-    socket.on('deleteMovie', movieId => {
+    socketRef.current.on('deleteMovie', movieId => {
       toast('Из команты удален фильм', {
         icon: '🍿',
       });
       setMovies(prev => prev.filter(movie => movie.id !== movieId));
     });
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        socketRef.current?.disconnect();
+      } else {
+        createSocket();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
-      socket.disconnect();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      socketRef.current?.disconnect();
     };
   }, [token]);
   return (

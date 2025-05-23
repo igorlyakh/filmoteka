@@ -4,11 +4,13 @@ import AddForm from '@/components/AddForm';
 import EmptyHeader from '@/components/EmptyHeader';
 import RoomsList from '@/components/RoomsList';
 import useAuthStore from '@/store';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { io } from 'socket.io-client';
 
 const RoomsPage = () => {
+  const socketRef = useRef(null);
+
   const [rooms, setRooms] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,14 +21,16 @@ const RoomsPage = () => {
   };
 
   useEffect(() => {
-    const socket = io(import.meta.env.VITE_BACKEND_URL, {
-      withCredentials: true,
-      extraHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    socket.on('addToRoom', data => {
+    const createSocket = () => {
+      socketRef.current = io(import.meta.env.VITE_BACKEND_URL, {
+        withCredentials: true,
+        extraHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    };
+    createSocket();
+    socketRef.current.on('addToRoom', data => {
       setRooms(prevRooms => {
         if (Array.isArray(prevRooms)) {
           return [...prevRooms, data];
@@ -39,7 +43,7 @@ const RoomsPage = () => {
       });
     });
 
-    socket.on('kickFromRoom', data => {
+    socketRef.current.on('kickFromRoom', data => {
       setRooms(prevRooms => {
         return prevRooms.filter(room => room.id !== data);
       });
@@ -48,8 +52,19 @@ const RoomsPage = () => {
       });
     });
 
+    const handlerVisibilityChange = () => {
+      if (document.hidden) {
+        socketRef.current.disconnect();
+      } else {
+        createSocket();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handlerVisibilityChange);
+
     return () => {
-      socket.disconnect();
+      document.removeEventListener('visibilitychange', handlerVisibilityChange);
+      socketRef.current.disconnect();
     };
   }, [token]);
 
