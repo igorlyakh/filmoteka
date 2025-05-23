@@ -35,7 +35,7 @@ const MovieItem = ({ title, poster, movieId, roomId, isSelected }) => {
       <img
         src={
           img
-            ? 'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
+            ? 'https://lightwidget.com/wp-content/uploads/localhost-file-not-found.jpg'
             : poster
         }
         alt={title}
